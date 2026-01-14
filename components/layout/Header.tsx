@@ -27,41 +27,33 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-2xl'
-          : 'bg-white/70 backdrop-blur-md shadow-lg'
+      className={`fixed top-0 w-full z-50 transition-all duration-200 ${
+        scrolled ? 'bg-white shadow-md' : 'bg-white shadow-sm'
       }`}
     >
-      {/* Premium Top Bar */}
-      <div className="bg-gradient-to-r from-aura-black via-aura-grey-dark to-aura-black text-white py-2.5 border-b border-aura-gold/20">
+      {/* Simple Top Bar */}
+      <div className="bg-aura-black text-white py-2 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
+          <div className="flex justify-between items-center">
             <div className="flex items-center space-x-6">
               <a
                 href="tel:647-391-3292"
-                className="flex items-center hover:text-aura-gold transition-all group"
+                className="flex items-center hover:text-aura-gold transition-colors"
               >
-                <div className="p-1.5 rounded-full bg-aura-gold/10 group-hover:bg-aura-gold/20 transition-all mr-2">
-                  <Phone className="w-3.5 h-3.5" />
-                </div>
-                <span className="font-medium">647-391-3292</span>
+                <Phone className="w-3.5 h-3.5 mr-2" />
+                <span>647-391-3292</span>
               </a>
               <a
                 href="mailto:info@aurarenovations.ca"
-                className="hidden md:flex items-center hover:text-aura-gold transition-all group"
+                className="hidden md:flex items-center hover:text-aura-gold transition-colors"
               >
-                <div className="p-1.5 rounded-full bg-aura-gold/10 group-hover:bg-aura-gold/20 transition-all mr-2">
-                  <Mail className="w-3.5 h-3.5" />
-                </div>
-                <span className="font-medium">info@aurarenovations.ca</span>
+                <Mail className="w-3.5 h-3.5 mr-2" />
+                <span>info@aurarenovations.ca</span>
               </a>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-aura-gold/10 border border-aura-gold/20">
-                <Star className="w-3 h-3 text-aura-gold fill-current" />
-                <span className="text-xs font-semibold text-aura-gold">5-Star Rated</span>
-              </div>
+            <div className="hidden sm:flex items-center gap-1.5">
+              <Star className="w-3 h-3 text-aura-gold fill-current" />
+              <span className="text-xs">5-Star Rated</span>
             </div>
           </div>
         </div>
@@ -69,12 +61,12 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo with gradient */}
-          <Link href="/" className="flex items-center group">
-            <div className="text-2xl font-extrabold tracking-tight">
-              <span className="text-aura-black group-hover:text-aura-grey-dark transition-colors">AURA</span>
-              <span className="gradient-text"> RENOVATIONS</span>
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <div className="text-xl font-bold tracking-tight">
+              <span className="text-aura-black">AURA</span>
+              <span className="text-aura-gold"> RENOVATIONS</span>
             </div>
           </Link>
 
@@ -84,15 +76,14 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative px-4 py-2 text-aura-black hover:text-aura-gold font-semibold text-sm transition-colors duration-300 group"
+                className="px-4 py-2 text-aura-black hover:text-aura-gold font-medium text-sm transition-colors"
               >
                 {item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-aura-gold-dark to-aura-gold-light group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
             <Link
               href="/contact"
-              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-aura-gold-dark via-aura-gold to-aura-gold-light text-white font-bold text-sm rounded-lg shadow-lg hover:shadow-aura-gold/50 transition-all duration-300 hover:scale-105"
+              className="ml-4 px-6 py-2.5 bg-aura-gold hover:bg-aura-gold-dark text-white font-semibold text-sm rounded-lg transition-colors"
             >
               Get a Quote
             </Link>
@@ -101,7 +92,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="lg:hidden p-2 rounded-lg text-aura-black hover:bg-aura-gold/10 hover:text-aura-gold transition-all"
+            className="lg:hidden p-2 rounded text-aura-black hover:text-aura-gold transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -109,16 +100,16 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation with premium style */}
+        {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden pb-6 animate-slide-in">
-            <div className="bg-gradient-to-b from-white/50 to-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-aura-gold/10">
-              <div className="flex flex-col space-y-3">
+          <div className="lg:hidden pb-4">
+            <div className="bg-aura-grey-light rounded-lg p-4 mt-2">
+              <div className="flex flex-col space-y-2">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="px-4 py-3 text-aura-black hover:text-aura-gold font-semibold transition-all rounded-lg hover:bg-aura-gold/10"
+                    className="px-4 py-2 text-aura-black hover:text-aura-gold font-medium transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -126,7 +117,7 @@ export default function Header() {
                 ))}
                 <Link
                   href="/contact"
-                  className="mt-4 px-6 py-3 bg-gradient-to-r from-aura-gold-dark via-aura-gold to-aura-gold-light text-white font-bold text-center rounded-lg shadow-lg hover:shadow-aura-gold/50 transition-all"
+                  className="mt-2 px-6 py-2.5 bg-aura-gold hover:bg-aura-gold-dark text-white font-semibold text-center rounded-lg transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Get a Quote
